@@ -13,7 +13,6 @@ namespace TestGame
       private SpriteBatch _spriteBatch;
       private Player _player;
       private SpriteFont _font;
-      private double _pos;
 
       public Game1(Camera camera)
       {
@@ -83,9 +82,8 @@ namespace TestGame
          //_player.HandleInput(_inputState);
 
          var x = gameTime.TotalGameTime.TotalMilliseconds;
-         _pos = 1f * Math.Sin((float)x / 100f);
-         _player.X = (float)_pos;
-         _pos = x;
+         _player.X = (float)(1f * Math.Sin((float)x / 100f));
+         _player.Y = (float)(1f * Math.Cos((float)x / 100f));
          base.Update(gameTime);
       }
 
@@ -101,7 +99,7 @@ namespace TestGame
          _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, _camera.TranslationMatrix);
          
          _player.Draw(_spriteBatch);
-         _spriteBatch.DrawString(_font, _pos.ToString(), new Vector2(100, 100), Color.Red);
+         //_spriteBatch.DrawString(_font, _pos.ToString(), new Vector2(100, 100), Color.Red);
 
          _spriteBatch.End();
 
