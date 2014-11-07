@@ -39,8 +39,9 @@
     <Compile Include="Figure.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="InputState.cs" />
+    <Compile Include="Intent.cs" />
     <Compile Include="LayerDepth.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Mass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

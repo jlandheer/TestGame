@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,8 +13,8 @@ namespace TestGame
       private readonly GraphicsDeviceManager _graphics;
       private readonly InputState _inputState;
       private SpriteBatch _spriteBatch;
-      private Player _player;
       private SpriteFont _font;
+      private readonly List<Figure> _denizens = new List<Figure>();
 
       public Game1(Camera camera)
       {
@@ -46,13 +48,22 @@ namespace TestGame
          // Create a new SpriteBatch, which can be used to draw textures.
          _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-         _player = new Player
+         var playerSprite = Content.Load<Texture2D>("Player");
+
+         _denizens.Add(new Mass
          {
-            X = 0,
-            Y = 0,
-            Sprite = Content.Load<Texture2D>("Player"),
+            Position = new Vector2(0, 0),
+            Sprite = playerSprite,
             Name = "Mr. Rogue"
-         };
+         });
+
+         _denizens.Add(new Mass
+         {
+            Position = new Vector2(20, 0),
+            Sprite = playerSprite,
+            Name = "Mr. Rogue"
+         });
+
          _camera.CenterOn(new Vector2(0, 0));
          _font = Content.Load<SpriteFont>("MyFont");
       }
@@ -79,11 +90,14 @@ namespace TestGame
          // TODO: Add your update logic here
          _inputState.Update();
          _camera.HandleInput(_inputState);
-         //_player.HandleInput(_inputState);
 
-         var x = gameTime.TotalGameTime.TotalMilliseconds;
-         _player.X = (float)(1f * Math.Sin((float)x / 100f));
-         _player.Y = (float)(1f * Math.Cos((float)x / 100f));
+         foreach (var denizen in _denizens)
+         {
+            var currentDenizen = denizen;
+            var intention = currentDenizen.Act(_denizens.Where(i => i != currentDenizen));
+            //currentDenizen.Position += (intention.Direction / 10);
+         }
+
          base.Update(gameTime);
       }
 
@@ -97,8 +111,11 @@ namespace TestGame
 
          // TODO: Add your drawing code here
          _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, _camera.TranslationMatrix);
-         
-         _player.Draw(_spriteBatch);
+
+         foreach (var denizen in _denizens)
+         {
+            denizen.Draw(_spriteBatch);
+         }
          //_spriteBatch.DrawString(_font, _pos.ToString(), new Vector2(100, 100), Color.Red);
 
          _spriteBatch.End();
