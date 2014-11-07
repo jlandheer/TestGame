@@ -41,7 +41,7 @@
     <Compile Include="InputState.cs" />
     <Compile Include="Intent.cs" />
     <Compile Include="LayerDepth.cs" />
-    <Compile Include="Mass.cs" />
+    <Compile Include="Celestial.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

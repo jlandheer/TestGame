@@ -12,7 +12,7 @@ namespace TestGame.Tests
          [Test]
          public void NoOthersReturnsNullVector()
          {
-            var player = new Mass
+            var player = new Celestial
             {
                Position = new Vector2(0, 0)
             };
@@ -24,14 +24,15 @@ namespace TestGame.Tests
          [Test]
          public void OneOtherReturnsDistance()
          {
-            var player = new Mass
+            var player = new Celestial
             {
-               Position = new Vector2(0, 0)
+               Position = new Vector2(0, 0),
+               Mass = 1
             };
 
-            var res = player.Act(new List<Figure> { new Mass { Position = new Vector2(20, 0) } });
+            var res = player.Act(new List<Figure> { new Celestial { Position = new Vector2(20, 0), Mass = 1 } });
 
-            Assert.AreEqual(new Vector2(-20, 0), res.Direction);
+            Assert.AreEqual(new Vector2(0.0025f, 0), res.Direction);
          }
       }
    }

@@ -50,14 +50,14 @@ namespace TestGame
 
          var playerSprite = Content.Load<Texture2D>("Player");
 
-         _denizens.Add(new Mass
+         _denizens.Add(new Celestial
          {
             Position = new Vector2(0, 0),
             Sprite = playerSprite,
             Name = "Mr. Rogue"
          });
 
-         _denizens.Add(new Mass
+         _denizens.Add(new Celestial
          {
             Position = new Vector2(20, 0),
             Sprite = playerSprite,
