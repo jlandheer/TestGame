@@ -97,31 +97,31 @@ namespace TestGame
       }
 
       // Move the camera's position based on input
-      public void HandleInput(InputState inputState, PlayerIndex? controllingPlayer)
+      public void HandleInput(InputState inputState)
       {
          var cameraMovement = Vector2.Zero;
 
-         if (inputState.IsScrollLeft(controllingPlayer))
+         if (inputState.IsScrollLeft())
          {
             cameraMovement.X = -1;
          }
-         else if (inputState.IsScrollRight(controllingPlayer))
+         else if (inputState.IsScrollRight())
          {
             cameraMovement.X = 1;
          }
-         if (inputState.IsScrollUp(controllingPlayer))
+         if (inputState.IsScrollUp())
          {
             cameraMovement.Y = -1;
          }
-         else if (inputState.IsScrollDown(controllingPlayer))
+         else if (inputState.IsScrollDown())
          {
             cameraMovement.Y = 1;
          }
-         if (inputState.IsZoomIn(controllingPlayer))
+         if (inputState.IsZoomIn())
          {
             AdjustZoom(0.25f);
          }
-         else if (inputState.IsZoomOut(controllingPlayer))
+         else if (inputState.IsZoomOut())
          {
             AdjustZoom(-0.25f);
          }

@@ -78,7 +78,7 @@ namespace TestGame
 
          // TODO: Add your update logic here
          _inputState.Update();
-         _camera.HandleInput(_inputState, PlayerIndex.One);
+         _camera.HandleInput(_inputState);
          //_player.HandleInput(_inputState);
 
          var x = gameTime.TotalGameTime.TotalMilliseconds;
